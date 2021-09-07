@@ -1,0 +1,6 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
