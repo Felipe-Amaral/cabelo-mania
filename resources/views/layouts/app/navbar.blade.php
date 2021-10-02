@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ url('dashboard') }}">
                         <i class="fas fa-chart-pie"></i> Dashboard
                     </a>
                 </li>
@@ -50,9 +50,12 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle
-                    @if (Route::current()->getName() == 'articles')
-                        active
-                    @endif
+                        @if (
+                            request()->is('articles*') ||
+                            request()->is('categories*')
+                        )
+                            active
+                        @endif
                     " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-newspaper"></i> Blog
                     </a>

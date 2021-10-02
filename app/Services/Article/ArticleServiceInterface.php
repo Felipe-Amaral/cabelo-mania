@@ -13,4 +13,5 @@ interface ArticleServiceInterface
     public function create(Request $request): void;
     public function edit(Request $request, int $id): void;
     public function delete(int $id): void;
+    public function changeVisibility(int $articleId, bool $visible): void;
 }

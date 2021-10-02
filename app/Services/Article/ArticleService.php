@@ -38,4 +38,13 @@ class ArticleService implements ArticleServiceInterface
     {
         $this->articleRepository->delete($id);
     }
+
+    public function changeVisibility(int $articleId, bool $visible): void
+    {
+        if ($visible) {
+            $this->articleRepository->setInvisible($articleId);
+        } else {
+            $this->articleRepository->setVisible($articleId);
+        }
+    }
 }

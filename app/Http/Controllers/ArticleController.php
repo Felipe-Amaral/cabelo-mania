@@ -38,7 +38,10 @@ class ArticleController extends Controller
 
     public function edit(int $id): View
     {
-        return view('articles.edit', ['article' => $this->articleService->getById($id)]);
+        return view('articles.edit', [
+            'article'    => $this->articleService->getById($id),
+            'categories' => $this->categoryService->getAll()
+        ]);
     }
 
     public function update(Request $request, int $id): RedirectResponse
@@ -51,5 +54,15 @@ class ArticleController extends Controller
     {
         $this->articleService->delete($id);
         return redirect('articles')->with('status', 'Artigo deletada com sucesso!');
+    }
+
+    public function setVisible()
+    {
+
+    }
+
+    public function setInvisible()
+    {
+
     }
 }

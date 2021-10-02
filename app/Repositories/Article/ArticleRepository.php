@@ -14,7 +14,7 @@ class ArticleRepository implements ArticleRepositoryInterface
         try {
             return Article::all();
         } catch (\Exception) {
-            throw new \Exception('Falha ao obter artigos.');
+            throw new \Exception('Falha no repositório ao obter artigos.');
         }
     }
 
@@ -23,7 +23,7 @@ class ArticleRepository implements ArticleRepositoryInterface
         try {
             return Article::findOrFail($id);
         } catch (\Exception) {
-            throw new \Exception('Falha ao encontrar artigo.');
+            throw new \Exception('Falha no repositório ao encontrar artigo.');
         }
     }
 
@@ -47,7 +47,7 @@ class ArticleRepository implements ArticleRepositoryInterface
 
             $article->save();
         } catch (\Exception) {
-            throw new \Exception('Falha ao atualizar artigo.');
+            throw new \Exception('Falha no repositório ao atualizar artigo.');
         }
     }
 
@@ -57,7 +57,27 @@ class ArticleRepository implements ArticleRepositoryInterface
             $article = Article::findOrFail($id);
             $article->delete();
         } catch (\Exception) {
-            throw new \Exception('Falha ao deletar artigo.');
+            throw new \Exception('Falha no repositório ao deletar artigo.');
+        }
+    }
+
+    public function setVisible(int $id): void
+    {
+        try {
+            $article = Article::findOrFail($id);
+            $article->visible = 1;
+        } catch (\Exception) {
+            throw new \Exception('Falha no repositório ao tornar artigo invisível.');
+        }
+    }
+
+    public function setInvisible(int $id): void
+    {
+        try {
+            $article = Article::findOrFail($id);
+            $article->visible = 0;
+        } catch (\Exception) {
+            throw new \Exception('Falha no repositório ao tornar artigo visível.');
         }
     }
 }

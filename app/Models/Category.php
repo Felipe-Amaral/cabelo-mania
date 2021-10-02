@@ -12,4 +12,9 @@ class Category extends Model
 
     protected $table = 'category';
     protected $guarded = [];
+
+    public function articles()
+    {
+        return $this->belongsTo(Article::class, 'category_id', 'id');
+    }
 }

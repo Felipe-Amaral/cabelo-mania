@@ -18,11 +18,11 @@
                     <a title="Visualizar Detalhado" href="{{ route('categories.show', $category->id) }}" class="btn btn-success">
                         <i class="fas fa-search"></i>
                     </a>
-
+                    &nbsp;
                     <a title="Editar Categoria" href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning text-white">
                         <i class="fas fa-edit"></i>
                     </a>
-
+                    &nbsp;
                     <form class="d-inline" action="{{ route('categories.destroy', $category->id) }}" method="POST">
                         @csrf
                         @method('DELETE')

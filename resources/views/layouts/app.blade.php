@@ -10,6 +10,7 @@
     <body>
         @include('layouts.app.navbar')
         @include('layouts.app.status')
+        @include('layouts.app.version-modal')
         @yield('content')
         <script src="{{ mix('js/app.js') }}" defer></script>
         @include('layouts.app.footer')

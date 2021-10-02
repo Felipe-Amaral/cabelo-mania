@@ -36,11 +36,13 @@
                     <label class="form-label" for="content"><i class="fas fa-paragraph"></i> Conteúdo</label>
                     <textarea id="summernote" name="content" class="form-control" id="content" cols="30" rows="10" required></textarea>
 
-                    <a href="{{ route('articles.index') }}" class="btn btn-danger my-3">
-                        <i class="fas fa-arrow-circle-left"></i> Voltar
-                    </a>
+                    <div class="margin-bottom-70px">
+                        <a href="{{ route('articles.index') }}" class="btn btn-danger my-3">
+                            <i class="fas fa-arrow-circle-left"></i> Voltar
+                        </a>
 
-                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>
