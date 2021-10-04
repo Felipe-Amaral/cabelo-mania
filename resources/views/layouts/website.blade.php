@@ -7,8 +7,18 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
-    <body>
+    <body id="grad" class="animate__animated animate__fadeIn">
+        <div class="container-fluid">
+            <div class="row">
+                @include('layouts.website.navbar-social-media')
+                @include('layouts.website.navbar')
+                @include('layouts.website.banner')
+            </div>
+        </div>
+
         @yield('content')
+
+        @include('layouts.website.footer')
         <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 </html>

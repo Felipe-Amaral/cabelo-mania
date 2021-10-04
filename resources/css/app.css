@@ -4,7 +4,30 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 @import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
 @import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import "animate.css";
 
 .margin-bottom-70px{
     margin-bottom: 70px;
+}
+
+#grad {
+    background: rgb(251,236,63);
+    background: radial-gradient(circle, rgba(251,236,63,1) 0%, rgba(255,106,0,1) 100%);
+}
+
+.main-menu-link {
+    text-shadow: 0px 1px 2px #000000;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+iframe {
+    display: block; /* iframes are inline by default */
+    background: #000;
+    height: 350px;
+    width: 100%;
+}
+
+.h1-page {
+    text-shadow: 0px 1px 2px #000000;
 }

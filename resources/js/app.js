@@ -8,6 +8,7 @@ require('./../../node_modules/datatables.net-bs5');
 require('./../../node_modules/datatables.net-dt/js/dataTables.dataTables');
 
 require('./../../node_modules/@fortawesome/fontawesome-free/js/solid')
+require('./../../node_modules/@fortawesome/fontawesome-free/js/brands')
 require('./../../node_modules/@fortawesome/fontawesome-free/js/fontawesome')
 
 $(document).ready(function() {
