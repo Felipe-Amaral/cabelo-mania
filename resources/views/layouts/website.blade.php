@@ -12,7 +12,6 @@
             <div class="row">
                 @include('layouts.website.navbar-social-media')
                 @include('layouts.website.navbar')
-                @include('layouts.website.banner')
             </div>
         </div>
 

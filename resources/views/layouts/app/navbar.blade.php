@@ -2,7 +2,7 @@
     <div class="container">
 
         <a class="navbar-brand" href="#">
-            <img width="60" src="{{ mix('images/logo.gif') }}" alt="">
+            <img width="60" src="{{ mix('images/logo.svg') }}" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,11 @@
                         <i class="fas fa-columns"></i> Editar Site
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Home
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="#">
                                 O Cabelo Mania

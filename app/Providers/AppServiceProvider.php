@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(base_path('resources/views/website'), 'website');
+        $this->loadViewsFrom(base_path('resources/views/admin'), 'admin');
+        $this->loadViewsFrom(base_path('resources/views/blog'), 'blog');
     }
 }
