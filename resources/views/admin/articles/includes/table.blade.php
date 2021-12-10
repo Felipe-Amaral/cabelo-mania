@@ -18,8 +18,9 @@
                     <td>{{ $article->category->name }}</td>
                     <td>{{ $article->seo_description }}</td>
                     <td>
-                        <form action="" method="post">
-                            <input type="hidden" name="visible" value="@if ($article->visible) 1 @else 0 @endif">
+                        <form action="{{ route('article.changevisibility', $article->id) }}" method="post">
+                            @method('PUT')
+                            @csrf
                             <button type="submit" class="btn @if ($article->visible) btn-success @else btn-danger @endif">
                             <i class="fas fa-eye"></i>
                             </button>

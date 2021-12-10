@@ -7,13 +7,13 @@
                 <h1><i class="fas fa-file"></i> Visualização Artigo</h1>
                 <div class="mb-3">
                     <label for="title" class="form-label"><i class="fas fa-heading"></i> Título</label>
-                    <input type="text" class="form-control" id="title" readonly value="{{ $article->title }}">
+                    <input type="text" class="form-control" id="title" readonly value="{{ $article->getTitle() }}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="visible"><i class="fas fa-eye"></i> Visível
                         <input type="checkbox" name="visible" disabled
-                            @if ($article->visible)
+                            @if ($article->getVisible())
                                 checked
                             @endif
                         >
@@ -23,18 +23,18 @@
                 <div class="mb-3">
                     <label class="form-label" for="category_id"><i class="fas fa-tags"></i> Categoria</label>
                     <select name="category_id" class="form-control" id="category_id" disabled>
-                        <option>{{ $article->category->name }}</option>
+                        <option>{{ $article->getCategoryName() }}</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="seo_description"><i class="fas fa-search-dollar"></i> Descrição SEO</label>
-                    <input class="form-control" type="text" name="seo_description" id="seo_description" value="{{ $article->seo_description }}" readonly>
+                    <input class="form-control" type="text" name="seo_description" id="seo_description" value="{{ $article->getSeoDescription() }}" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="content"><i class="fas fa-paragraph"></i> Conteúdo</label>
-                        {!! html_entity_decode($article->content) !!}
+                        {!! html_entity_decode($article->getContent()) !!}
                 </div>
 
 

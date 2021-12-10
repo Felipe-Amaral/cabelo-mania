@@ -2,24 +2,25 @@
 
 namespace App\Services\Article;
 
-use App\Models\Article;
+use App\Entities\ArticleEntity;
+use App\Http\Resources\ArticleCollection;
 use App\Repositories\Article\ArticleRepositoryInterface;
 use App\Services\Article\ArticleServiceInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ArticleService implements ArticleServiceInterface
 {
     public function __construct(
-        private ArticleRepositoryInterface $articleRepository,
-    ) {}
+        private ArticleRepositoryInterface $articleRepository
+    ) {
+    }
 
-    public function getAll(): Collection
+    public function getAll(): ArticleCollection
     {
         return $this->articleRepository->getAll();
     }
 
-    public function getById(int $id): Article
+    public function getById(int $id): ArticleEntity
     {
         return $this->articleRepository->getById($id);
     }
@@ -39,12 +40,9 @@ class ArticleService implements ArticleServiceInterface
         $this->articleRepository->delete($id);
     }
 
-    public function changeVisibility(int $articleId, bool $visible): void
+    public function changeVisibility(int $articleId): void
     {
-        if ($visible) {
-            $this->articleRepository->setInvisible($articleId);
-        } else {
-            $this->articleRepository->setVisible($articleId);
-        }
+        $article = $this->getById($articleId);
+        dd($article);
     }
 }

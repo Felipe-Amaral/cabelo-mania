@@ -14,7 +14,8 @@ class ArticleController extends Controller
     public function __construct(
         private ArticleServiceInterface $articleService,
         private CategoryServiceInterface $categoryService
-    ) {}
+    ) {
+    }
 
     public function index(): View
     {
@@ -57,13 +58,9 @@ class ArticleController extends Controller
         return redirect('admin::articles')->with('status', 'Artigo deletada com sucesso!');
     }
 
-    public function setVisible()
+    public function changeArticleVisibility(int $id): RedirectResponse
     {
-
-    }
-
-    public function setInvisible()
-    {
-
+        $this->articleService->changeVisibility($id);
+        return redirect('admin::articles')->with('status', 'Visibilidade alterada com sucesso!');
     }
 }

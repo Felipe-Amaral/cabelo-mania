@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row mt-4 mb-0">
-            @include('articles.includes.btn-new-article')
+            @include('admin.articles.includes.btn-new-article')
         </div>
         <div class="row">
             <div class="col mt-4">
-                @include('articles.includes.table')
+                @include('admin.articles.includes.table')
             </div>
         </div>
     </div>

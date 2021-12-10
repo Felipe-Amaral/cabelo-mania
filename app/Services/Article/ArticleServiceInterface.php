@@ -2,16 +2,16 @@
 
 namespace App\Services\Article;
 
-use App\Models\Article;
+use App\Entities\ArticleEntity;
+use App\Http\Resources\ArticleCollection;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 
 interface ArticleServiceInterface
 {
-    public function getAll(): Collection;
-    public function getById(int $id): Article;
+    public function getAll(): ArticleCollection;
+    public function getById(int $id): ArticleEntity;
     public function create(Request $request): void;
     public function edit(Request $request, int $id): void;
     public function delete(int $id): void;
-    public function changeVisibility(int $articleId, bool $visible): void;
+    public function changeVisibility(int $articleId): void;
 }
