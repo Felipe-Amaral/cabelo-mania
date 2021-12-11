@@ -3,7 +3,6 @@
 namespace App\Services\Article;
 
 use App\Entities\ArticleEntity;
-use App\Http\Requests\GetByIdPostRequest;
 use App\Http\Requests\StoreArticlePostRequest;
 use App\Http\Resources\ArticleCollection;
 use Illuminate\Http\Request;

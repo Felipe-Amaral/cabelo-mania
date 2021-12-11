@@ -9,7 +9,9 @@ use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
-    public function __construct(private CategoryServiceInterface $categoryService) {}
+    public function __construct(private CategoryServiceInterface $categoryService)
+    {
+    }
 
     public function index(): View
     {

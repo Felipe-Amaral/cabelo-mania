@@ -2,10 +2,10 @@
 
 namespace App\Services\Category;
 
-use App\Models\Category;
+use App\Entities\CategoryEntity;
+use App\Http\Resources\CategoryCollection;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Services\Category\CategoryServiceInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class CategoryService implements CategoryServiceInterface
@@ -15,12 +15,12 @@ class CategoryService implements CategoryServiceInterface
     ) {
     }
 
-    public function getAll(): Collection
+    public function getAll(): CategoryCollection
     {
         return $this->categoryRepository->getAll();
     }
 
-    public function getById(int $id): Category
+    public function getById(int $id): CategoryEntity
     {
         return $this->categoryRepository->getById($id);
     }

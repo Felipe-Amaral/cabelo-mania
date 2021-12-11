@@ -3,8 +3,10 @@
 namespace App\Repositories\Article;
 
 use App\Entities\ArticleEntity;
-use App\Exceptions\ArticleRepositoryGetAllException;
-use App\Http\Requests\GetByIdPostRequest;
+use App\Exceptions\Article\ArticleRepositoryCreateException;
+use App\Exceptions\Article\ArticleRepositoryEditException;
+use App\Exceptions\Article\ArticleRepositoryGetAllException;
+use App\Exceptions\Article\ArticleRepositoryGetByIdException;
 use App\Http\Resources\ArticleCollection;
 use App\Repositories\Article\ArticleRepositoryInterface;
 use App\Models\Article;
@@ -25,16 +27,20 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         try {
             return new ArticleEntity(Article::with('category')->findOrFail($id)->toArray());
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao obter artigo.');
+        } catch (ArticleRepositoryGetByIdException) {
+            throw new ArticleRepositoryGetByIdException();
         }
     }
 
     public function create(Request $request): void
     {
-        $request->request->remove('files');
-        $article = new Article($request->all());
-        $article->save();
+        try {
+            $request->request->remove('files');
+            $article = new Article($request->all());
+            $article->save();
+        } catch (ArticleRepositoryCreateException) {
+            throw new ArticleRepositoryCreateException();
+        }
     }
 
     public function edit(Request $request, int $id): void
@@ -49,8 +55,8 @@ class ArticleRepository implements ArticleRepositoryInterface
             $article->content         = $request->content;
 
             $article->save();
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao atualizar artigo.');
+        } catch (ArticleRepositoryEditException) {
+            throw new ArticleRepositoryEditException();
         }
     }
 

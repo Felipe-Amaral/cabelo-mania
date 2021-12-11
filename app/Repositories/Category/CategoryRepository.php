@@ -2,26 +2,27 @@
 
 namespace App\Repositories\Category;
 
+use App\Entities\CategoryEntity;
+use App\Http\Resources\CategoryCollection;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAll(): CategoryCollection
     {
         try {
-            return Category::all();
+            return new CategoryCollection(Category::all());
         } catch (\Exception) {
             throw new \Exception('Falha ao obter categoria.');
         }
     }
 
-    public function getById(int $id): Category
+    public function getById(int $id): CategoryEntity
     {
         try {
-            return Category::findOrFail($id);
+            return new CategoryEntity(Category::findOrFail($id));
         } catch (\Exception) {
             throw new \Exception('Falha ao encontrar categoria.');
         }
@@ -40,11 +41,13 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function edit(Request $request, int $id): void
     {
         try {
-            $category              = Category::findOrFail($id);
-            $category->name        = $request->name;
-            $category->description = $request->description;
+            //new CategoryEntity(Category::findOrFail($id)->toArray());
+            $category              = new CategoryEntity(Category::findOrFail($id)->toArray());
 
-            $category->save();
+            // $category->set        = $request->name;
+            // $category->description = $request->description;
+
+            // $category->save();
         } catch (\Exception) {
             throw new \Exception('Falha ao atualizar artigo.');
         }

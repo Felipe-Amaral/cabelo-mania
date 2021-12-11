@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Exceptions\Article;
 
 use Exception;
 use Fig\Http\Message\StatusCodeInterface as StatusCode;
 
-class ArticleRepositoryGetAllException extends Exception
+class ArticleRepositoryGetByIdException extends Exception
 {
     public function report()
     {
@@ -14,7 +14,7 @@ class ArticleRepositoryGetAllException extends Exception
     public function render()
     {
         return response(
-            'Falha no repositório ao obter artigos.',
+            'Falha no repositório ao obter artigo por id.',
             StatusCode::STATUS_BAD_REQUEST
         );
     }

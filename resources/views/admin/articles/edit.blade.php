@@ -7,9 +7,7 @@
                 <h1><i class="fas fa-file"></i> Editar Artigo</h1>
                 <form action="{{ route('articles.store') }}" method="post">
                     @csrf
-@php
-    //dd($categories);
-@endphp
+
                     <div class="mb-3">
                         <label class="form-label" for="title"><i class="fas fa-heading"></i> Título</label>
                         <input type="text" class="form-control" name="title" id="title" required value="{{ $article->getTitle() }}">
@@ -23,10 +21,10 @@
                         <label class="form-label" for="category_id"><i class="fas fa-tags"></i> Categoria</label>
                         <select name="category_id" class="form-control" id="category_id">
                             <option value="">Sem categoria</option>
-                            <option value="{{ $article->getCategoryId() }}">{{ $article->getCategoryName() }}</option>
+
                             @foreach ($categories as $category)
-                                <option value="{{ $category->getId() }}"
-                                    @if ($category->id === $article->category->id)
+                                <option value="{{ $category->id }}"
+                                    @if ($category->id === $article->getCategoryId())
                                         selected
                                     @endif
                                 >
@@ -39,12 +37,12 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="seo_description"><i class="fas fa-search-dollar"></i> Descrição SEO</label>
-                        <input class="form-control" type="text" name="seo_description" id="seo_description" value="{{ $article->seo_description }}">
+                        <input class="form-control" type="text" name="seo_description" id="seo_description" value="{{ $article->getSeoDescription() }}">
                     </div>
 
                     <label class="form-label" for="content"><i class="fas fa-paragraph"></i> Conteúdo</label>
                     <textarea id="summernote" name="content" class="form-control" id="content" cols="30" rows="10" required>
-                        {{ $article->content }}
+                        {{ $article->getContent() }}
                     </textarea>
 
                     <div class="margin-bottom-70px mt-4">
