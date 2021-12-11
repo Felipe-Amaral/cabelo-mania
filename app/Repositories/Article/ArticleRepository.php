@@ -3,6 +3,8 @@
 namespace App\Repositories\Article;
 
 use App\Entities\ArticleEntity;
+use App\Exceptions\ArticleRepositoryGetAllException;
+use App\Http\Requests\GetByIdPostRequest;
 use App\Http\Resources\ArticleCollection;
 use App\Repositories\Article\ArticleRepositoryInterface;
 use App\Models\Article;
@@ -14,18 +16,18 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         try {
             return new ArticleCollection(Article::all());
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao obter artigos.');
+        } catch (ArticleRepositoryGetAllException) {
+            throw new ArticleRepositoryGetAllException();
         }
     }
 
     public function getById(int $id): ArticleEntity
     {
-            $articleModel                  = Article::findOrFail($id);
-            $articleArray                  = Article::findOrFail($id)->toArray();
-            $articleArray['category_name'] = $articleModel->category->name;
-
-            return new ArticleEntity($articleArray);
+        try {
+            return new ArticleEntity(Article::with('category')->findOrFail($id)->toArray());
+        } catch (\Exception) {
+            throw new \Exception('Falha no repositório ao obter artigo.');
+        }
     }
 
     public function create(Request $request): void

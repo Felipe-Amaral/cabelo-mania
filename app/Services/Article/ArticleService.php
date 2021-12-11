@@ -3,6 +3,7 @@
 namespace App\Services\Article;
 
 use App\Entities\ArticleEntity;
+use App\Http\Requests\StoreArticlePostRequest;
 use App\Http\Resources\ArticleCollection;
 use App\Repositories\Article\ArticleRepositoryInterface;
 use App\Services\Article\ArticleServiceInterface;
@@ -25,7 +26,7 @@ class ArticleService implements ArticleServiceInterface
         return $this->articleRepository->getById($id);
     }
 
-    public function create(Request $request): void
+    public function create(StoreArticlePostRequest $request): void
     {
         $this->articleRepository->create($request);
     }

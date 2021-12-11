@@ -3,19 +3,18 @@
 namespace App\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Facades\Date;
 
 class ArticleEntity implements Arrayable
 {
-    protected int $id;
+    protected int    $id;
     protected string $title;
-    protected bool $visible;
-    protected int $categoryId;
+    protected bool   $visible;
+    protected int    $categoryId;
     protected string $categoryName;
     protected string $seoDescription;
     protected string $content;
-    protected Date $createdAt;
-    protected Date $updatedAt;
+    protected string $createdAt;
+    protected string $updatedAt;
 
     public function __construct(array $data)
     {
@@ -92,7 +91,7 @@ class ArticleEntity implements Arrayable
         $this->content = $content;
     }
 
-    public function getCreatedAt(): Date
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
@@ -102,7 +101,7 @@ class ArticleEntity implements Arrayable
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): Date
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
@@ -121,19 +120,23 @@ class ArticleEntity implements Arrayable
             'category_id'     => $this->getCategoryId(),
             'category_name'   => $this->getCategoryName(),
             'seo_description' => $this->getSeoDescription(),
-            'content'         => $this->getContent()
+            'content'         => $this->getContent(),
+            'created_at'      => $this->getCreatedAt(),
+            'updated_at'      => $this->getUpdatedAt()
         ];
     }
 
     private function populate(array $data): self
     {
-        $this->setId((int)                $data['id']              ?? null);
-        $this->setTitle((string)          $data['title']           ?? null);
-        $this->setVisible((bool)          $data['visible']         ?? null);
-        $this->setCategoryId((int)        $data['category_id']     ?? null);
-        $this->setCategoryName((string)   $data['category_name']   ?? null);
-        $this->setSeoDescription((string) $data['seo_description'] ?? null);
-        $this->setContent((string)        $data['content']         ?? null);
+        $this->setId((int)                $data['id']               ?? null);
+        $this->setTitle((string)          $data['title']            ?? null);
+        $this->setVisible((bool)          $data['visible']          ?? null);
+        $this->setCategoryId((int)        $data['category_id']      ?? null);
+        $this->setCategoryName((string)   $data['category']['name'] ?? null);
+        $this->setSeoDescription((string) $data['seo_description']  ?? null);
+        $this->setContent((string)        $data['content']          ?? null);
+        $this->setCreatedAt((string)      $data['created_at']       ?? null);
+        $this->setUpdatedAt((string)      $data['content']          ?? null);
 
         return $this;
     }

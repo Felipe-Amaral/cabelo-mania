@@ -10,6 +10,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('articles', ArticleController::class);
     Route::put('article/changevisibility/{id}', [ArticleController::class, 'changeArticleVisibility'])
         ->name('article.changevisibility');
-
     Route::resource('categories', CategoryController::class);
 });

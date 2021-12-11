@@ -12,7 +12,8 @@ class CategoryService implements CategoryServiceInterface
 {
     public function __construct(
         private CategoryRepositoryInterface $categoryRepository,
-    ) {}
+    ) {
+    }
 
     public function getAll(): Collection
     {

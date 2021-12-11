@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetByIdPostRequest;
 use App\Http\Requests\StoreArticlePostRequest;
 use App\Http\Requests\UpdateArticlePutRequest;
 use App\Services\Article\ArticleServiceInterface;

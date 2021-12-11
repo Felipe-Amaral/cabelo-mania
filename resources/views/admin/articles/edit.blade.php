@@ -7,25 +7,25 @@
                 <h1><i class="fas fa-file"></i> Editar Artigo</h1>
                 <form action="{{ route('articles.store') }}" method="post">
                     @csrf
-
+@php
+    //dd($categories);
+@endphp
                     <div class="mb-3">
                         <label class="form-label" for="title"><i class="fas fa-heading"></i> Título</label>
-                        <input type="text" class="form-control" name="title" id="title" required value="{{ $article->title }}">
+                        <input type="text" class="form-control" name="title" id="title" required value="{{ $article->getTitle() }}">
                     </div>
 
                     <label class="form-label mb-3" for="visible"><i class="fas fa-eye"></i> Visível
-                        <input type="checkbox" name="visible" id="visible" value="1" @if($article->visible) checked @endif>
+                        <input type="checkbox" name="visible" id="visible" value="1" @if($article->getVisible()) checked @endif>
                     </label>
 
                     <div class="mb-3">
                         <label class="form-label" for="category_id"><i class="fas fa-tags"></i> Categoria</label>
                         <select name="category_id" class="form-control" id="category_id">
                             <option value="">Sem categoria</option>
-
-
-                                <option value="{{ $article->category->id }}">{{ $article->category->name }}</option>
+                            <option value="{{ $article->getCategoryId() }}">{{ $article->getCategoryName() }}</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
+                                <option value="{{ $category->getId() }}"
                                     @if ($category->id === $article->category->id)
                                         selected
                                     @endif
