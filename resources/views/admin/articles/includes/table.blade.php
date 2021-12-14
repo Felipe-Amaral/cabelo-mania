@@ -1,5 +1,10 @@
 <h1 class="mb-3"><i class="fas fa-folder-open"></i> Artigos</h1>
-
+@if($errors->any())
+<h4>{{$errors->first()}}</h4>
+@endif
+@if (Session::has('message'))
+   <div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
 <div class="table-responsive mb-5 pb-4">
     <table id="articles" class="table table-striped datatables">
         <thead>
@@ -18,7 +23,7 @@
                     <td>{{ $article->category->name }}</td>
                     <td>{{ $article->seo_description }}</td>
                     <td>
-                        <form action="{{ route('article.changevisibility', $article->id) }}" method="post">
+                        <form action="" method="post">
                             @method('PUT')
                             @csrf
                             <button type="submit" class="btn @if ($article->visible) btn-success @else btn-danger @endif">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions\Article;
+namespace App\Exceptions\Article\Repository;
 
 use Exception;
 use Fig\Http\Message\StatusCodeInterface as StatusCode;

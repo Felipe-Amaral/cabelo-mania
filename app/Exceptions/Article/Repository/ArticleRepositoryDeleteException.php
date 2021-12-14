@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Exceptions\Article;
+namespace App\Exceptions\Article\Repository;
 
 use Exception;
 use Fig\Http\Message\StatusCodeInterface as StatusCode;
 
-class ArticleRepositoryEditException extends Exception
+class ArticleRepositoryDeleteException extends Exception
 {
     public function report()
     {
@@ -14,7 +14,7 @@ class ArticleRepositoryEditException extends Exception
     public function render()
     {
         return response(
-            'Falha no repositório ao atualizar artigo.',
+            'Falha no repositório ao deletar artigo.',
             StatusCode::STATUS_BAD_REQUEST
         );
     }

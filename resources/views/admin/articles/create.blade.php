@@ -37,7 +37,7 @@
                     <textarea id="summernote" name="content" class="form-control" id="content" cols="30" rows="10" required></textarea>
 
                     <div class="margin-bottom-70px">
-                        <a href="{{ route('articles.index') }}" class="btn btn-danger my-3">
+                        <a href="{{ route('articles.list') }}" class="btn btn-danger my-3">
                             <i class="fas fa-arrow-circle-left"></i> Voltar
                         </a>
 

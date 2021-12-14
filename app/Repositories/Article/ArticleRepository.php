@@ -3,14 +3,16 @@
 namespace App\Repositories\Article;
 
 use App\Entities\ArticleEntity;
-use App\Exceptions\Article\ArticleRepositoryCreateException;
-use App\Exceptions\Article\ArticleRepositoryEditException;
-use App\Exceptions\Article\ArticleRepositoryGetAllException;
-use App\Exceptions\Article\ArticleRepositoryGetByIdException;
+use App\Exceptions\Article\Repository\ArticleRepositoryCreateException;
+use App\Exceptions\Article\Repository\ArticleRepositoryDeleteException;
+use App\Exceptions\Article\Repository\ArticleRepositoryEditException;
+use App\Exceptions\Article\Repository\ArticleRepositoryGetAllException;
+use App\Exceptions\Article\Repository\ArticleRepositoryGetByIdException;
 use App\Http\Resources\ArticleCollection;
 use App\Repositories\Article\ArticleRepositoryInterface;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ArticleRepository implements ArticleRepositoryInterface
 {
@@ -18,7 +20,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         try {
             return new ArticleCollection(Article::all());
-        } catch (ArticleRepositoryGetAllException) {
+        } catch (ArticleRepositoryGetAllException $e) {
+            Log::error("message: " . $e->getMessage());
             throw new ArticleRepositoryGetAllException();
         }
     }
@@ -27,7 +30,8 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         try {
             return new ArticleEntity(Article::with('category')->findOrFail($id)->toArray());
-        } catch (ArticleRepositoryGetByIdException) {
+        } catch (ArticleRepositoryGetByIdException $e) {
+            Log::error("message: " . $e->getMessage());
             throw new ArticleRepositoryGetByIdException();
         }
     }
@@ -38,7 +42,8 @@ class ArticleRepository implements ArticleRepositoryInterface
             $request->request->remove('files');
             $article = new Article($request->all());
             $article->save();
-        } catch (ArticleRepositoryCreateException) {
+        } catch (ArticleRepositoryCreateException $e) {
+            Log::error("message: " . $e->getMessage());
             throw new ArticleRepositoryCreateException();
         }
     }
@@ -55,7 +60,8 @@ class ArticleRepository implements ArticleRepositoryInterface
             $article->content         = $request->content;
 
             $article->save();
-        } catch (ArticleRepositoryEditException) {
+        } catch (ArticleRepositoryEditException $e) {
+            Log::error("message: " . $e->getMessage());
             throw new ArticleRepositoryEditException();
         }
     }
@@ -65,28 +71,9 @@ class ArticleRepository implements ArticleRepositoryInterface
         try {
             $article = Article::findOrFail($id);
             $article->delete();
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao deletar artigo.');
-        }
-    }
-
-    public function setVisible(int $id): void
-    {
-        try {
-            $article = Article::findOrFail($id);
-            $article->visible = 1;
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao tornar artigo invisível.');
-        }
-    }
-
-    public function setInvisible(int $id): void
-    {
-        try {
-            $article = Article::findOrFail($id);
-            $article->visible = 0;
-        } catch (\Exception) {
-            throw new \Exception('Falha no repositório ao tornar artigo visível.');
+        } catch (ArticleRepositoryDeleteException $e) {
+            Log::error("message: " . $e->getMessage());
+            throw new ArticleRepositoryDeleteException();
         }
     }
 }

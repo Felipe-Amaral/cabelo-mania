@@ -5,8 +5,9 @@
         <div class="row">
             <div class="col mt-4">
                 <h1><i class="fas fa-file"></i> Editar Artigo</h1>
-                <form action="{{ route('articles.store') }}" method="post">
+                <form action="{{ route('articles.update',  $article->getId()) }}" method="post">
                     @csrf
+                    @method('put')
 
                     <div class="mb-3">
                         <label class="form-label" for="title"><i class="fas fa-heading"></i> Título</label>
@@ -46,7 +47,7 @@
                     </textarea>
 
                     <div class="margin-bottom-70px mt-4">
-                        <a href="{{ route('articles.index') }}" class="btn btn-danger">
+                        <a href="{{ route('articles.list') }}" class="btn btn-danger">
                             <i class="fas fa-arrow-circle-left"></i> Voltar
                         </a>
 

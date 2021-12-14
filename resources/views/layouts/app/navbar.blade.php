@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('articles.index') }}">
+                            <a class="dropdown-item" href="{{ route('articles.list') }}">
                                 Listar
                             </a>
                         </li>

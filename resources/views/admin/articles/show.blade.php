@@ -38,7 +38,7 @@
                 </div>
 
 
-                <a href="{{ route('articles.index') }}" class="btn btn-danger margin-bottom-70px"><i class="fas fa-arrow-circle-left"></i> Voltar</a><br><br>
+                <a href="{{ route('articles.list') }}" class="btn btn-danger margin-bottom-70px"><i class="fas fa-arrow-circle-left"></i> Voltar</a><br><br>
             </div>
         </div>
     </div>

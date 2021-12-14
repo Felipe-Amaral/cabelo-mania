@@ -8,20 +8,15 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom(base_path('resources/views/website'), 'website');
         $this->loadViewsFrom(base_path('resources/views/admin'), 'admin');
